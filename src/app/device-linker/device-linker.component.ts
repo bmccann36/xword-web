@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CdkStepper } from '@angular/cdk/stepper';
 
 
 @Component({
@@ -10,26 +11,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DeviceLinkerComponent implements OnInit {
   title = 'newMat';
   isLinear = true;
-  // firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
-  constructor(private _formBuilder: FormBuilder) { }
+  deviceTokenGenerating = false;
+  pairComplete = false;
+  constructor(private _formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
-    // this.firstFormGroup = this._formBuilder.group({
-    //   name: ['', Validators.required],
-    //   description: ['', Validators.required]
-    // });
-
     this.secondFormGroup = this._formBuilder.group({
-      amount: ['', Validators.required],
-      stock: ['', Validators.required]
+      oneTimeCode: ['', Validators.required],
     });
+  }
+  onChanges(): void {
 
   }
 
-  submit() {
-    // console.log(this.firstFormGroup.value);
-    console.log(this.secondFormGroup.value);
+  onSubmit() {
+    this.deviceTokenGenerating = true;
+    setTimeout(() => {
+      this.deviceTokenGenerating = false;
+      this.pairComplete = true;
+    }, 1000)
+
   }
 
   goToLink(url: string) {

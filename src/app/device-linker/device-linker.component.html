@@ -3,34 +3,42 @@
 
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step>
-      <ng-template matStepLabel>get device code</ng-template>
-      <p>go to this link to generate a code that will pair this service with your remarkable</p>
-      <a (click)="goToLink('https://my.remarkable.com/device/desktop')">https://my.remarkable.com/device/desktop</a>
-      <p>once you have the code click the Next button below </p>
+    <ng-template matStepLabel>get device code</ng-template>
+    <p>go to this link to generate a code that will pair this service with your remarkable</p>
+    <a (click)="goToLink('https://my.remarkable.com/device/desktop')">https://my.remarkable.com/device/desktop</a>
+    <p>once you have the code click the Next button below </p>
 
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
 
   </mat-step>
 
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Amount & Stock</ng-template>
-      <mat-form-field>
-        <mat-label>Amount</mat-label>
-        <input matInput placeholder="Amount" formControlName="amount" required>
-      </mat-form-field>
-      <br />
+    <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit()">
+      <ng-template matStepLabel>Enter Device Code</ng-template>
 
-      <mat-form-field>
-        <mat-label>Stock</mat-label>
-        <input matInput placeholder="Stock" formControlName="stock" required>
-      </mat-form-field>
+      <div *ngIf="!deviceTokenGenerating && !pairComplete">
+        <span>
+          <mat-form-field>
+            <mat-label>one time code</mat-label>
+            <input matInput placeholder="one time code" formControlName="oneTimeCode" required>
+          </mat-form-field>
+          <button mat-button class="button" type="submit">Pair Device</button>
+        </span>
+      </div>
+
+      <div *ngIf="deviceTokenGenerating">
+        <mat-spinner></mat-spinner>
+        <p>reaching out to Remarkable cloud service to pair your device</p>
+      </div>
+
+      <div *ngIf="pairComplete" > paring completed!! </div>
+
       <br />
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext [disabled]="!pairComplete">Next</button>
       </div>
     </form>
 
@@ -41,16 +49,14 @@
     <p>You are now done.</p>
 
     <mat-list>
-      <!-- <mat-list-item> <strong>Name:</strong> {{ this.firstFormGroup.value.name }}</mat-list-item>
-      <mat-list-item> <strong>Description:</strong> {{ this.firstFormGroup.value.description }}</mat-list-item> -->
-      <mat-list-item> <strong>Amount:</strong> {{ this.secondFormGroup.value.amount }}</mat-list-item>
-      <mat-list-item> <strong>Stock:</strong> {{ this.secondFormGroup.value.stock }}</mat-list-item>
+      <!-- <mat-list-item> <strong>Amount:</strong> {{ this.secondFormGroup.value.amount }}</mat-list-item>
+      <mat-list-item> <strong>Stock:</strong> {{ this.secondFormGroup.value.stock }}</mat-list-item> -->
     </mat-list>
 
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="submit()">Submit</button>
+      <!-- <button mat-button (click)="submit()">Submit</button> -->
     </div>
 
   </mat-step>
