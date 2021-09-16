@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-
-
 @Component({
   selector: 'device-linker',
   templateUrl: 'device-linker.component.html',

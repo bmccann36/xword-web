@@ -1,11 +1,11 @@
-import { DeviceLinkerComponent } from './device-linker/device-linker.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeroesComponent } from './heroes/heroes.component';
+import { DeviceLinkerComponent } from './device-linker/device-linker.component';
+import { ScratchpadComponent } from './scratchpad/scratchpad.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: 'heroes', component: HeroesComponent },
+  { path: '', redirectTo: '/scratchpad', pathMatch: 'full' },
+  { path: 'scratchpad', component: ScratchpadComponent },
   { path: 'linkDevice', component: DeviceLinkerComponent },
 ];
 
