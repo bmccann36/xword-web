@@ -1,0 +1,31 @@
+<form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit()">
+  <ng-template matStepLabel>Enter Device Code</ng-template>
+
+  <div *ngIf="!deviceTokenGenerating && !pairComplete">
+    <span>
+      <mat-form-field>
+        <mat-label>one time code</mat-label>
+        <input
+          matInput
+          placeholder="one time code"
+          formControlName="oneTimeCode"
+          required
+        />
+      </mat-form-field>
+      <button mat-button class="button" type="submit">Pair Device</button>
+    </span>
+  </div>
+
+  <div *ngIf="deviceTokenGenerating">
+    <mat-spinner></mat-spinner>
+    <p>reaching out to Remarkable cloud service to pair your device</p>
+  </div>
+
+  <div *ngIf="pairComplete">paring completed! click next to confirm the connection and wrap up</div>
+
+  <br />
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext [disabled]="!pairComplete">Next</button>
+  </div>
+</form>

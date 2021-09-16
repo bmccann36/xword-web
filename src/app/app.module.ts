@@ -12,12 +12,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EnterCodeStepComponent } from './enter-code-step/enter-code-step.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    DeviceLinkerComponent
+    DeviceLinkerComponent,
+    EnterCodeStepComponent
   ],
   imports: [
     BrowserModule,

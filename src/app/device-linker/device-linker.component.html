@@ -1,64 +1,37 @@
 <h1>Pair Your Remarkable Tablet</h1>
-<!-- <h3>Create Product</h3> -->
 
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step>
     <ng-template matStepLabel>get device code</ng-template>
-    <p>go to this link to generate a code that will pair this service with your remarkable</p>
-    <a (click)="goToLink('https://my.remarkable.com/device/desktop')">https://my.remarkable.com/device/desktop</a>
-    <p>once you have the code click the Next button below </p>
+    <p>
+      go to this link to generate a code that will pair this service with your
+      remarkable
+    </p>
+    <a (click)="goToLink('https://my.remarkable.com/device/desktop')"
+      >https://my.remarkable.com/device/desktop</a
+    >
+    <p>once you have the code click the Next button below</p>
 
     <div>
       <button mat-button matStepperNext>Next</button>
     </div>
-
   </mat-step>
 
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit()">
-      <ng-template matStepLabel>Enter Device Code</ng-template>
-
-      <div *ngIf="!deviceTokenGenerating && !pairComplete">
-        <span>
-          <mat-form-field>
-            <mat-label>one time code</mat-label>
-            <input matInput placeholder="one time code" formControlName="oneTimeCode" required>
-          </mat-form-field>
-          <button mat-button class="button" type="submit">Pair Device</button>
-        </span>
-      </div>
-
-      <div *ngIf="deviceTokenGenerating">
-        <mat-spinner></mat-spinner>
-        <p>reaching out to Remarkable cloud service to pair your device</p>
-      </div>
-
-      <div *ngIf="pairComplete" > paring completed!! </div>
-
-      <br />
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext [disabled]="!pairComplete">Next</button>
-      </div>
-    </form>
-
+    <app-enter-code-step
+      [secondFormGroup]="secondFormGroup"
+    ></app-enter-code-step>
   </mat-step>
 
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
 
-    <mat-list>
-      <!-- <mat-list-item> <strong>Amount:</strong> {{ this.secondFormGroup.value.amount }}</mat-list-item>
-      <mat-list-item> <strong>Stock:</strong> {{ this.secondFormGroup.value.stock }}</mat-list-item> -->
-    </mat-list>
 
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
       <!-- <button mat-button (click)="submit()">Submit</button> -->
     </div>
-
   </mat-step>
-
 </mat-horizontal-stepper>
