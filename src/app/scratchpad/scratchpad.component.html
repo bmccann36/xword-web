@@ -1,1 +1,18 @@
-<p>scratchpad works!</p>
+<div class="interactive-area">
+  <div *ngIf="!filesCreating">
+    <h3>last step - send a test file</h3>
+    <p>
+      finally lets create a folder called "daily-crosswords"<br />
+      and put a crossword puzzle in it to confirm that your<br />
+      device was paired properly
+    </p>
+    <button
+      mat-stroked-button
+      class="button"
+      type="submit"
+      (click)="onButtonClick()"
+    >
+      create folder and file
+    </button>
+  </div>
+</div>

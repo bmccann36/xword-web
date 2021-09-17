@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scratchpad.component.css']
 })
 export class ScratchpadComponent implements OnInit {
-
+  filesCreating = true;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onButtonClick() {
+    console.log('on button click called');
   }
 
 }

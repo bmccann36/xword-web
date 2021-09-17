@@ -9,14 +9,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class DeviceLinkerComponent implements OnInit {
   title = 'newMat';
   isLinear = true;
-  secondFormGroup!: FormGroup;
+  otCodeFormGroup!: FormGroup;
   deviceTokenGenerating = false;
   pairComplete = false;
   constructor(private _formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
-    this.secondFormGroup = this._formBuilder.group({
+    this.otCodeFormGroup = this._formBuilder.group({
       oneTimeCode: ['', Validators.required],
     });
   }

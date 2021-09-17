@@ -1,4 +1,4 @@
-<form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="otCodeFormGroup" (ngSubmit)="onSubmit()">
   <ng-template matStepLabel>Enter Device Code</ng-template>
 
   <div *ngIf="!deviceTokenGenerating && !pairComplete">

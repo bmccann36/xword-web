@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./enter-code-step.component.css']
 })
 export class EnterCodeStepComponent implements OnInit {
-  @Input() secondFormGroup!: FormGroup;
+  @Input() otCodeFormGroup!: FormGroup;
   deviceTokenGenerating = false;
   pairComplete = false;
   constructor() { }
